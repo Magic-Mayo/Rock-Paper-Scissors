@@ -1,0 +1,118 @@
+.chat-box {
+    position: fixed;
+    float: right;
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    background-color: bisque;
+    justify-content: center;
+    overflow-y: hidden;
+    top: -3.5px;
+    right: 0;
+}
+
+.chat-message {
+    position: absolute;
+    background-color: #ffffff;
+    width: 81%;
+    height: 90%;
+    left: 63px;
+    top: 20px;
+}
+
+.chat-send {
+    display: flex;
+    width: 265px;
+    position: absolute;
+    bottom: 20px;
+    left: 63px;
+}
+
+.chat-btn {
+    display: flex;
+    width: auto;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+.collapsible-chat {
+    position: absolute;
+    left: 0;
+    background-color: aliceblue;
+    width: 25px;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.collapsible-chat:hover {
+    cursor: pointer;
+}
+
+.collapse-caret {
+    position: absolute;
+    left: 5px;
+    top: 46%;
+    transform: translateY(-50%);
+}
+
+@keyframes collapse-chat {
+    100% {right: -375px}
+}
+
+@keyframes uncollapse-chat {
+    100% {right: 0;}
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.rps-index {
+    width: 600px;
+}
+
+.chat-tab, .users-tab {
+    background-color: cadetblue;
+    width: 25px;
+    height: 120px;
+    border: #777777 solid 1px;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tabs {
+    position: absolute;
+    left: 25px;
+    top: 31.9%;
+}
+
+.chat-tab {
+    line-height: 30px
+}
+
+.users-tab {
+    line-height: 24px
+}
+
+.users-tab-content {
+    position: absolute;
+    width: 81%;
+    height: 93%;
+    left: 63px;
+    top: 20px;
+    display: none;
+}
+
+.online-users {
+    position: absolute;
+    left: 30%;
+}
+
+.previous-chat {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+}
