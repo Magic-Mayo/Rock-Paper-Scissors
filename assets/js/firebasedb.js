@@ -12,6 +12,21 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
+
 database.ref().on("value", function(snapshot) {
-    console.log(snapshot);
+    firebase.auth().onAuthStateChanged((user) => {
+    	if (user) {
+        	// User logged in already or has just logged in.
+        	console.log(user.uid);
+		}
+	  
+		else {
+        // User not logged in or has just logged out.
+    	}
+    });
+})
+
+$('.chat-btn').on('click', function(e){
+    e.preventDefault();
+
 })
