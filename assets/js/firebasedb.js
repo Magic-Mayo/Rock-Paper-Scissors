@@ -1,3 +1,4 @@
+let onlineUsers = [];
 
 const firebaseConfig = {
     apiKey: "AIzaSyBr2YPQyeL0INt0EIYRDmqvsf0MNP1U8P0",
@@ -13,36 +14,51 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 database.ref().on("value", function(snapshot) {
-    // console.log(snapshot.val())
+	// console.log(snapshot.val())
     firebase.auth().onAuthStateChanged((user) => {
-        // console.log(user.uid)
-        const uID = user.uid
+		const uID = user.uid;
+		const userButton = $('<div>').text(user.displayName).data('user', uID);
+		$('.online-users').append(userButton)
+		// console.log(uID)
+		if ($(userButton).data('user') === uID){
+			console.log
+		}
         if (user) {
             // User logged in already or has just logged in.  Change user state to online via .ref(uid).set()
-            // console.log(user.uid);
-            if (!user.uid){
-                console.log(snapshot.val())
-                const userButton = $('<div>');
-                $('.online-users').append(
-                    userButton.data('user', user.uid).text(snapshot.child(user.uid).child('name'))
-                )
-                console.log(snapshot.child(user.uid))
+			if (snapshot.val().userList[uID].user == uID){
+				database.ref('userList').child(uID).update({
+					isOnline: true
+				})
+				console.log('online')
+			// userButton.data({user: uID, online: true}).text(snapshot.child(uID).child('name'))
+			// console.log(snapshot.child(uID))
                 }
             // if ()  
-            if (!snapshot.child('userList').child(user.uid).exists()){
-                database.ref('userList').child(user.uid).set({
-                    user: user.uid,
+            if (!snapshot.child('userList').child(uID).exists()){
+                database.ref('userList').child(uID).set({
+                    user: uID,
                     name: user.displayName,
-                    email: user.email,
+					email: user.email,
+					isOnline: true,
                     dateAdded: firebase.database.ServerValue.TIMESTAMP})
-            }} else {
-        // User not logged in or has just logged out.  Change user state to offline via .ref(uid).set()
+			}
+		}
+		else {
+			// User not logged in or has just logged out.  Change user state to offline via .ref(uid).set()
+			database.ref('userList').child(uID).update({
+				isOnline: false
+				})
         }
-        
-        // console.log(firebase.database.ServerValue.TIMESTAMP)
-
     });
-})
+});
+
+// $('.signOut').click(function(e){
+// 	e.preventDefault();
+// 	firebase.auth().onAuthStateChanged((user) => {
+// 		user.signout();
+// 		console.log('sign out');
+// 	})
+// })
 
 $('.chat-btn').on('click', function(e){
     e.preventDefault();
@@ -59,3 +75,5 @@ $('.chat-btn').on('click', function(e){
         ]
     }
 } */
+
+// push online users to an array to loop thru at database.on to append online users to page.  will also use if inside loop to filter out the user's own name
