@@ -1,5 +1,4 @@
 $(document).on('click', '.collapsible-chat', function(){
-    console.log('hi')
     if ($('.chat-box').css('right') == '-375px'){
         $('.chat-box').css('animation', 'uncollapse-chat .6s ease-in 1');
         setTimeout(function(){
@@ -28,7 +27,6 @@ $(document).on('click', '.chat-tab', function(){
     if ($('.users-tab-content').attr('users-active')){
         $('.users-tab-content').attr('users-active', false).css('display', 'none');
         $('.chat-tab-content').attr('chat-active', true).css('display', 'block');
-        // $('.form').css('visibility', 'hidden');
     }
 
 })
