@@ -10,7 +10,7 @@
 <body>
     <aside class="chat-box" id="collapse">
         <div class="collapsible-chat"><h2 class="collapse-caret">></h2></div>
-        <div class="tabs"><h3 class="chat-tab">C<br>h<br>a<br>t</h3><h3 class="users-tab">U<br>s<br>e<br>r<br>s</h3></div>
+        <div class="tabs"><h3 class="chat-tab">Chat</h3><h3 class="users-tab">Users</h3></div>
         <div class="chat-tab-content" chat-active=true>
             <div class="chat-message"></div>
             <form class="form">
@@ -19,8 +19,8 @@
             </form>
         </div>
         <div class="users-tab-content" users-active=false>
-            <h3 class="online-users">Online Users</h3><hr>
-            <h3 class="previous-chat">Previous Chats</h3><hr>
+            <h3 class="online-users">Online Users<hr></h3>
+            <h3 class="previous-chat">Previous Chats<hr></h3>
         </div>
     </aside>
     <div class="container">
@@ -29,6 +29,11 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script>
     <script src="assets/js/firebasedb.js"></script>
+    <script src="assets/js/firebasemsg.js"></script>
     <script src="assets/js/rps.js"></script>
+    <script type="module" src="assets/js/firebasedb.js">export const database
+        </script>
+    <script type="module" src="assets/js/firebasemsg.js">import database from '/assets/js/firebasemsg.js'
+    </script>
 </body>
 </html>
