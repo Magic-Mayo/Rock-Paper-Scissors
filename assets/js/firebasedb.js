@@ -16,13 +16,19 @@ const database = firebase.database();
 database.ref().on("value", function(snapshot) {
 	// console.log(snapshot.val())
     firebase.auth().onAuthStateChanged((user) => {
-		const uID = user.uid;
-		const userButton = $('<div>').text(user.displayName).data('user', uID);
-		$('.online-users').append(userButton)
-		// console.log(uID)
-		if ($(userButton).data('user') === uID){
-			console.log
-		}
+        const uID = user.uid;
+        console.log(uID)
+		const userButton = $('<div>').text(user.displayName).attr('id', uID);
+        $('.online-users').append(userButton);
+        
+		if ($(userButton).attr('id') === uID){
+            console.log('button');
+            $('#'+uID).css('display', 'none');
+        }
+        
+        else if ($(userButton).attr('id') != uID) {
+            
+        }
         if (user) {
             // User logged in already or has just logged in.  Change user state to online via .ref(uid).set()
 			if (snapshot.val().userList[uID].user == uID){
