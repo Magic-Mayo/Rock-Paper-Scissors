@@ -33,7 +33,12 @@
     <script src="assets/js/rps.js"></script>
     <script type="module" src="assets/js/firebasedb.js">export const database
         </script>
-    <script type="module" src="assets/js/firebasemsg.js">import database from '/assets/js/firebasedb.js'
+    <script type="module" src="assets/js/firebaseauth.js">export const auth
         </script>
+    <script type="module" src="assets/js/firebasemsg.js">import database from '/assets/js/firebasedb.js'
+        import auth from '/assets/js/firebaseauth.js'
+        </script>
+    <!-- <script src="assets/js/firebaseauth.js" type="module">import database from '/assets/js/firebasedb.js'
+        </script> -->
 </body>
 </html>
