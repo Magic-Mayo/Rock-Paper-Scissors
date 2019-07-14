@@ -17,7 +17,10 @@ database.ref().on("value", function(snapshot) {
 	// console.log(snapshot.val())
     firebase.auth().onAuthStateChanged((user) => {
         const uID = user.uid;
-        console.log(uID)
+        // console.log();
+        if(snapshot.val().userList[uID].isOnline === true){
+        onlineUsers.push(snapshot.val().userList[uID].name)}
+        console.log(onlineUsers)
 		const userButton = $('<div>').text(user.displayName).attr('id', uID);
         $('.online-users').append(userButton);
         
@@ -31,14 +34,6 @@ database.ref().on("value", function(snapshot) {
         }
         if (user) {
             // User logged in already or has just logged in.  Change user state to online via .ref(uid).set()
-			if (snapshot.val().userList[uID].user == uID){
-				database.ref('userList').child(uID).update({
-					isOnline: true
-				})
-				console.log('online')
-			// userButton.data({user: uID, online: true}).text(snapshot.child(uID).child('name'))
-			// console.log(snapshot.child(uID))
-                }
             // if ()  
             if (!snapshot.child('userList').child(uID).exists()){
                 database.ref('userList').child(uID).set({
@@ -47,8 +42,17 @@ database.ref().on("value", function(snapshot) {
 					email: user.email,
 					isOnline: true,
                     dateAdded: firebase.database.ServerValue.TIMESTAMP})
-			}
-		}
+            }
+                if (snapshot.val().userList[uID].user == uID){
+                    database.ref('userList').child(uID).update({
+                        isOnline: true
+                    })
+                    console.log('online')
+                // userButton.data({user: uID, online: true}).text(snapshot.child(uID).child('name'))
+                // console.log(snapshot.child(uID))
+                    }
+                
+            }
 		else {
 			// User not logged in or has just logged out.  Change user state to offline via .ref(uid).set()
 			database.ref('userList').child(uID).update({
